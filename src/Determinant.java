@@ -2,9 +2,18 @@ import parcs.*;
 
 public class Determinant implements AM {
     public void run(AMInfo info) {
-        Matrix matrix = (Matrix) info.parent.readObject();
-        double result = calculateDeterminant(matrix.getData());
-        info.parent.write(result);
+        try {
+            System.out.println("Determinant calculation started.");
+            Matrix matrix = (Matrix) info.parent.readObject();
+            System.out.println("Received matrix for processing.");
+            double result = calculateDeterminant(matrix.getData());
+            System.out.println("Calculated determinant: " + result);
+            info.parent.write(result);
+            System.out.println("Result sent back to parent.");
+        } catch (Exception e) {
+            System.err.println("Error during determinant calculation: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private double calculateDeterminant(double[][] matrix) {
