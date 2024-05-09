@@ -28,4 +28,4 @@ public class Determinant implements AM {
         }
         return det;
     }
-
+}
