@@ -13,9 +13,12 @@ public class Main {
         List<point> points = new ArrayList<>();
         List<channel> channels = new ArrayList<>();
 
+        // Пример задания IP-адреса локального хоста
+        byte[] ipAddr = InetAddress.getByName("127.0.0.1").getAddress();
+
         double[][] data = matrix.getData();
         for (int i = 0; i < data[0].length; i++) {
-            point p = curtask.createPoint();
+            point p = curtask.createPoint(0, 0, ipAddr);  // Использование 0 для tasknum и parentNumber как пример
             channel c = p.createChannel();
             p.execute("Determinant");
             Matrix minor = getMinor(matrix, 0, i);
@@ -27,7 +30,7 @@ public class Main {
         double result = 0;
         for (int i = 0; i < channels.size(); i++) {
             double subDet = channels.get(i).readDouble();
-            result += Math.pow(-1, i) * data[0][i] * subDet; // Sum up results with sign adjustment
+            result += Math.pow(-1, i) * data[0][i] * subDet;
         }
 
         System.out.println("Result: " + result);
