@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         task curtask = new task();
         curtask.addJarFile("Determinant.jar");
-        Matrix matrix = fromFile(curtask.findFile("input-20"));
+        Matrix matrix = fromFile(curtask.findFile("input-12"));
 
         List<point> points = new ArrayList<>();
         List<channel> channels = new ArrayList<>();
