@@ -9,13 +9,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         task curtask = new task();
         curtask.addJarFile("Determinant.jar");
-        Matrix matrix = fromFile(curtask.findFile("input-11-0"));
+        Matrix matrix = fromFile(curtask.findFile("input-10-0"));
 
         List<point> points = new ArrayList<>();
         List<channel> channels = new ArrayList<>();
 
         for (int i = 0; i < matrix.getSize(); i++) {
-            point p = new point(curtask, 0);  // Используем конструктор point(task curtask, int parentNumber)
+            point p = new point(curtask, 0);  
             channel c = p.createChannel();
             p.execute("Determinant");
             Matrix minor = getMinor(matrix, 0, i);
@@ -27,7 +27,7 @@ public class Main {
         double result = 0;
         for (int i = 0; i < channels.size(); i++) {
             double subDet = channels.get(i).readDouble();
-            result += Math.pow(-1, i) * matrix.getData()[0][i] * subDet; // Суммирование результатов с учётом знака
+            result += Math.pow(-1, i) * matrix.getData()[0][i] * subDet; 
         }
 
         System.out.println("Result: " + result);
