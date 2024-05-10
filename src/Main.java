@@ -18,7 +18,7 @@ public class Main {
             point p = curtask.createPoint();
             channel c = p.createChannel();
             p.execute("Determinant");
-            Matrix minor = getMinor(matrix, 0, i); 
+            Matrix minor = getMinor(matrix, 0, i);
             c.write(minor);
             points.add(p);
             channels.add(c);
@@ -27,7 +27,7 @@ public class Main {
         double result = 0;
         for (int i = 0; i < channels.size(); i++) {
             double subDet = channels.get(i).readDouble();
-            result += Math.pow(-1, i) * data[0][i] * subDet; 
+            result += Math.pow(-1, i) * data[0][i] * subDet; // Sum up results with sign adjustment
         }
 
         System.out.println("Result: " + result);
@@ -52,11 +52,11 @@ public class Main {
         int minorRow = 0;
 
         for (int i = 0; i < size; i++) {
-            if (i == excludedRow) continue; 
+            if (i == excludedRow) continue;
 
             int minorCol = 0;
             for (int j = 0; j < size; j++) {
-                if (j == excludedCol) continue; 
+                if (j == excludedCol) continue;
 
                 minor.setData(minorRow, minorCol, matrix.getData()[i][j]);
                 minorCol++;
